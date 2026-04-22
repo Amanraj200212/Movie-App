@@ -1,6 +1,7 @@
 import express from "express";
 
 import movieRoutes from "./routes/movieRoutes.js";
+import userRoutes from "./routes/userRoutes.js";
 
 const app = express();
 
@@ -13,5 +14,7 @@ app.get("/", (req, res) => {
 });
 
 app.use("/movies", movieRoutes);
+app.use("/users", userRoutes);
+
 
 export default app;

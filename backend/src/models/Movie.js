@@ -1,4 +1,4 @@
-// this is used for define schema for movies and creating movie model using mongoose ion mongodb database
+// this model is used for define schema for movies and creating movie model using mongoose ion mongodb database
 
 import mongoose from "mongoose";
 
