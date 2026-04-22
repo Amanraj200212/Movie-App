@@ -1,5 +1,6 @@
 // this works as controller for creating and reading users
 
+import mongoose from "mongoose";
 import User from "../models/user.js";
 
 const isValidId = (id) => mongoose.Types.ObjectId.isValid(id);
