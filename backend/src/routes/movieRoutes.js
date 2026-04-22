@@ -10,12 +10,10 @@ import {
 
 const router = express.Router();
 
-router.route("/").get(getMovies).post(createMovie);
-
-router
-  .route("/:id")
-  .get(getMovieById)
-  .put(updateMovie)
-  .delete(deleteMovie);
+router.get("/", getMovies);
+router.post("/", createMovie);
+router.get("/:id", getMovieById);
+router.put("/:id", updateMovie);
+router.delete("/:id", deleteMovie);
 
 export default router;
