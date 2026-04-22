@@ -1,3 +1,5 @@
+// this is used for define schema for movies and creating movie model using mongoose ion mongodb database
+
 import mongoose from "mongoose";
 
 const movieSchema = new mongoose.Schema(
@@ -30,6 +32,7 @@ const movieSchema = new mongoose.Schema(
       default: 0,
     },
   },
+  //createdAt and updatedAt fields will be automatically added to the schema optional
   {
     timestamps: true,
     versionKey: false,
