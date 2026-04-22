@@ -1,8 +1,6 @@
 import express from "express";
 
 import movieRoutes from "./routes/movieRoutes.js";
-import { notFound } from "./middleware/notFound.js";
-import { errorHandler } from "./middleware/errorHandler.js";
 
 const app = express();
 
@@ -14,10 +12,6 @@ app.get("/", (req, res) => {
   });
 });
 
-app.use("/api/movies", movieRoutes);
-
-app.use(notFound);
-app.use(errorHandler);
+app.use("/movies", movieRoutes);
 
 export default app;
-

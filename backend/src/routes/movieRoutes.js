@@ -7,17 +7,15 @@ import {
   getMovies,
   updateMovie,
 } from "../controllers/movieController.js";
-import { validateObjectId } from "../middleware/validateObjectId.js";
-import { validateMoviePayload } from "../middleware/validateMovie.js";
 
 const router = express.Router();
 
-router.route("/").get(getMovies).post(validateMoviePayload, createMovie);
+router.route("/").get(getMovies).post(createMovie);
 
 router
   .route("/:id")
-  .get(validateObjectId, getMovieById)
-  .put(validateObjectId, validateMoviePayload, updateMovie)
-  .delete(validateObjectId, deleteMovie);
+  .get(getMovieById)
+  .put(updateMovie)
+  .delete(deleteMovie);
 
 export default router;
