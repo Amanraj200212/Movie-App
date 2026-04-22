@@ -1,14 +1,29 @@
-import express from "express";
+import mongoose from "mongoose";
 
-// import Routes
-import movieRoutes from "./routes/movieRoutes.js";
+import app from "./app.js";
+import env from "./config/env.js";
+import { connectDB } from "./config/db.js";
 
-const app = express();
+const startServer = async () => {
+  try {
+    await connectDB(env.mongoUri);
 
-//API Routes
-app.use("/movies", movieRoutes);
+    const server = app.listen(env.port, () => {
+      console.log(`Server is running on port ${env.port}`);
+    });
 
-const PORT = 5001;
-app.listen(PORT, () => {
-  console.log(`Server is running on port ${PORT}`);
-});
+    const gracefulShutdown = async () => {
+      console.log("Shutting down server gracefully");
+      await mongoose.connection.close();
+      server.close(() => process.exit(0));
+    };
+
+    process.on("SIGINT", gracefulShutdown);
+    process.on("SIGTERM", gracefulShutdown);
+  } catch (error) {
+    console.error("Failed to start server:", error.message);
+    process.exit(1);
+  }
+};
+
+startServer();
