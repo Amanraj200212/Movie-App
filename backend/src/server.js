@@ -1,3 +1,5 @@
+// in any project just copy paste this code in server.js file 
+
 import mongoose from "mongoose";
 
 import app from "./app.js";

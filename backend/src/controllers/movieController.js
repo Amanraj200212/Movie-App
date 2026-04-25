@@ -1,4 +1,4 @@
-// this works as controller for creating, reading, updating and deleting movies in the database
+// this works as controller for creating, reading, updating and deleting movies in the database after define schema
 
 import Movie from "../models/Movie.js";
 import mongoose from "mongoose";

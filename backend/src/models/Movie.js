@@ -14,6 +14,10 @@ const movieSchema = new mongoose.Schema(
       required: [true, "Director is required"],
       trim: true,
     },
+    overview: {
+      type: String,
+      trim: true,
+    },
     releaseYear: {
       type: Number,
       required: [true, "Release year is required"],
@@ -24,6 +28,13 @@ const movieSchema = new mongoose.Schema(
       type: String,
       enum: ["Action", "Comedy", "Drama", "Fantasy", "Horror", "Romance", "Sci-Fi", "Thriller"],
       default: "Drama",
+    },
+    runtime: {
+      type: Number,
+      min: [1, "Runtime must be at least 1 minute"],
+    },
+    posterUrl: {
+      type: String,
     },
     rating: {
       type: Number,
