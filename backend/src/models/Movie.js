@@ -50,8 +50,8 @@ const movieSchema = new mongoose.Schema(
   }
 );
 
-// creating collection named "Movies" in mongodb database
-const Movie = mongoose.model("Movies", movieSchema);
+// creating collection named "Movie + s" in mongodb database
+const Movie = mongoose.model("Movie", movieSchema);
 
 export default Movie;
 
