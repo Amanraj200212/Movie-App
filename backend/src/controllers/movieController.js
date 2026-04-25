@@ -2,6 +2,7 @@
 
 import Movie from "../models/Movie.js";
 import mongoose from "mongoose";
+import WatchList from "../models/watchlist.js";
 
 const isValidId = (id) => mongoose.Types.ObjectId.isValid(id);
 
@@ -81,7 +82,10 @@ export const deleteMovie = async (req, res) => {
       return res.status(404).json({ message: "Movie not found" });
     }
 
-    res.json({ message: "Movie deleted" });
+    // if movie is deleted then also delete that movie from all users watchlist
+    await WatchList.deleteMany({movieId: req.params.id});
+
+    res.json({ message: "Movie deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }

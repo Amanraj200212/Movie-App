@@ -2,10 +2,13 @@ import express from "express";
 
 import movieRoutes from "./routes/movieRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
+import authRoutes from "./routes/authRoutes.js"
 
 const app = express();
 
+//for parsing json data from request body
 app.use(express.json());
+app.use(express.urlencoded({ extended: true }));
 
 app.get("/", (req, res) => {
   res.json({
@@ -15,6 +18,7 @@ app.get("/", (req, res) => {
 
 app.use("/movies", movieRoutes);
 app.use("/users", userRoutes);
+app.use("/auth", authRoutes);
 
 
 export default app;

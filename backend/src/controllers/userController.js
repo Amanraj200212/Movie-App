@@ -2,6 +2,7 @@
 
 import mongoose from "mongoose";
 import User from "../models/user.js";
+import WatchList from "../models/watchlist.js";
 
 const isValidId = (id) => mongoose.Types.ObjectId.isValid(id);
 
@@ -79,7 +80,10 @@ export const deleteUser = async (req, res) => {
       return res.status(404).json({ message: "User not found" });
     }
 
-    res.json({ message: "User deleted successfully" });
+    //if user delete then watchlist also got removed
+    await WatchList.deleteMany({ userId: req.params.id });
+
+    res.json({ message: "User and their watchlist deleted successfully" });
   } catch (error) {
     res.status(500).json({ message: error.message });
   }
