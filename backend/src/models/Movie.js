@@ -39,7 +39,8 @@ const movieSchema = new mongoose.Schema(
   }
 );
 
-const Movie = mongoose.model("Movie", movieSchema);
+// creating collection named "Movies" in mongodb database
+const Movie = mongoose.model("Movies", movieSchema);
 
 export default Movie;
 

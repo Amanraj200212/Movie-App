@@ -23,6 +23,7 @@ const userSchema = new mongoose.Schema(
    }
 );
 
-const User = mongoose.model("User", userSchema);
+// creating collection named "Users" in mongodb database
+const User = mongoose.model("Users", userSchema);
 
 export default User;
