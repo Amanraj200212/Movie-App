@@ -68,7 +68,7 @@ export const login = async(req, res) => {
 
 // for user "logout" Means CLEARING THE TOKEN
 export const logout = (req, res) => {
-  res.cookie("jwt&res", "", {
+  res.cookie("jwt", "", {
     httpOnly: true,
     expires: new Date(0) //expire immediate
   });

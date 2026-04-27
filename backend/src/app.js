@@ -3,6 +3,7 @@ import express from "express";
 import movieRoutes from "./routes/movieRoutes.js";
 import userRoutes from "./routes/userRoutes.js";
 import authRoutes from "./routes/authRoutes.js"
+import WatchListRoutes from "./routes/watchlistRoutes.js";
 
 const app = express();
 
@@ -19,6 +20,7 @@ app.get("/", (req, res) => {
 app.use("/movies", movieRoutes);
 app.use("/users", userRoutes);
 app.use("/auth", authRoutes);
+app.use("/watchlist", WatchListRoutes);
 
 
 export default app;

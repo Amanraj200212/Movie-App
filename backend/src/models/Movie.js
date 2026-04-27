@@ -36,12 +36,12 @@ const movieSchema = new mongoose.Schema(
     posterUrl: {
       type: String,
     },
-    rating: {
-      type: Number,
-      min: [0, "Rating cannot be less than 0"],
-      max: [10, "Rating cannot be greater than 10"],
-      default: 0,
-    },
+    // rating: {
+    //   type: Number,
+    //   min: [0, "Rating cannot be less than 0"],
+    //   max: [10, "Rating cannot be greater than 10"],
+    //   default: 0,
+    // },
   },
   //createdAt and updatedAt fields will be automatically added to the schema optional
   {

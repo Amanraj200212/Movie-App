@@ -33,6 +33,7 @@ const watchlistSchema = new mongoose.Schema(
   }
 );
 
+//for ensure that user cant add same movie multiple times in watchlist
 watchlistSchema.index({ userId: 1, movieId: 1 }, { unique: true });
 
 // creating collection named "Watchlist" in mongodb database
