@@ -1,3 +1,6 @@
+// this works as auth controller for creating, reading, updating and deleting users in the database after define schema or models
+
+
 import User from "../models/user.js";
 import bcrypt from "bcryptjs";
 import mongoose from "mongoose";
