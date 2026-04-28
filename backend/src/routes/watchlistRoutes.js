@@ -15,8 +15,11 @@ const router = express.Router();
 router.use(authMiddleware);
 
 router.post("/",validateRequest(validateWatchlistSchema) , addToWatchlist);
+
 router.get("/", getWatchlist);
+
 router.put("/:id",validateRequest(validateWatchlistSchema) , updateWatchlistItem);
+
 router.delete("/:id", removeFromWatchlist);
 
 

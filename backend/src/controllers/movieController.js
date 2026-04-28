@@ -10,7 +10,7 @@ const isValidId = (id) => mongoose.Types.ObjectId.isValid(id);
 export const createMovie = async (req, res) => {
   try {
     const movie = await Movie.create(req.body);
-    res.status(201).json(movie);
+    res.status(201).json({status: "succes",movie});
   } catch (error) {
     res.status(400).json({ message: error.message });
   }
