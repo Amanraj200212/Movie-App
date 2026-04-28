@@ -1,3 +1,4 @@
+//work as middleware to validate request bosy using zod schema
 
 export const validateRequest = (schema) => {
   return (req, res, next) => {
