@@ -10,7 +10,7 @@ export const addToWatchlist = async(req, res) => {
   // if movie is not in database
   const movie = await Movie.findById(movieId);
   if(!movie){
-    res.status(404).json({error: "Movie not found"});
+    return res.status(404).json({error: "Movie not found"});
   }
 
   //check movie is already in user's watchlist
@@ -19,14 +19,14 @@ export const addToWatchlist = async(req, res) => {
     movieId,
   });
   if(existingMovie){
-    res.status(400).json({error: "Movie already in watchlist"});
+    return res.status(400).json({error: "Movie already in watchlist"});
   }
 
   // after all checking , Add movie to watchlist
   const watchListitem = await WatchList.create({
     userId: req.user._id,
     movieId,
-    status: status || "Plan to Watch",
+    status: status || "PLAN TO WATCH",
     rating,
     notes,
   })
@@ -87,6 +87,5 @@ export const removeFromWatchlist = async (req, res) => {
 
   return res.status(200).json({status: "success", message: "Movie removed from watchlist"});
 }
-
 
   

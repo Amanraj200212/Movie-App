@@ -5,13 +5,12 @@ export const validateRequest = (schema) => {
     const result = schema.safeParse(req.body);
 
     if(!result.success){
-      const formattedErr = result.error.format();
-
       const flatErrors = result.error.issues.map(issue => issue.message);
 
       return res.status(400).json({ message: flatErrors.join(", ")});
     }
 
+    req.body = result.data;
     next();
   };
 };
