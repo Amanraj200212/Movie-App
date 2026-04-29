@@ -30,7 +30,6 @@ app.use("/movies", movieRoutes);
 app.use("/auth", authRoutes);
 app.use("/watchlist", WatchListRoutes);
 
-
 //middleware for handle error and not found error
 app.use(notfound);
 app.use(errorHandler);
