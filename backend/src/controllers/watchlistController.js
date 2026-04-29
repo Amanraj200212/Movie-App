@@ -38,14 +38,18 @@ export const addToWatchlist = async(req, res) => {
 //for get user's watchlist
 export const getWatchlistByUserId = async(req, res) => {
   const {id} = req.params;
-  const watchlist = await WatchList.find({userId: id}).populate("movieId", "title director releaseYear genre posterUrl");
+  const watchListItem = await WatchList.find({userId: id}).populate("movieId", "title director releaseYear genre posterUrl");
 
-  res.status(200).json({status: "success", watchlist});
+  // //ensure only owner can see thier watclist items
+  // if(!watchListItem.userId.equals(req.user._id)){
+  //   return res.status(404).json({error: "Not allowed to update this watchlist item"})
+  // }
 
+  return res.status(200).json({status: "success", watchListItem});
 };
 
 
-// for update watchlist item
+// for update watchlist item\
 export const updateWatchlistItem = async(req, res) => {
   const {id} = req.params;
 
@@ -58,7 +62,7 @@ export const updateWatchlistItem = async(req, res) => {
 
   // Ensure only owner can update their watchlist item
   if(!watchListItem.userId.equals(req.user._id)){
-    return res.status(403).json({ error: "Not allowed to update this watchlist item" });
+    return res.status(403).json({error: "Not allowed to update this watchlist item"});
   }
 
   if(watchListItem.status !== undefined) watchListItem.status = status;
