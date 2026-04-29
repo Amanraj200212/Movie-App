@@ -1,4 +1,4 @@
-//work as middleware to validate request body using zod schema
+//work as middleware to validate request schema body using zod schema
 
 export const validateRequest = (schema) => {
   return (req, res, next) => {

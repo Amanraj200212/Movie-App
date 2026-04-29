@@ -8,7 +8,7 @@ import {
   updateMovie,
 } from "../controllers/movieController.js";
 import { validateRequest } from "../middleware/validateRequest.js";
-import { validateMovieSchema } from "../validators/movieValidators.js";
+import { updateMovieSchema, validateMovieSchema } from "../validators/movieValidators.js";
 
 const router = express.Router();
 
@@ -18,7 +18,7 @@ router.post("/", validateRequest(validateMovieSchema), createMovie);
 
 router.get("/:id", getMovieById);
 
-router.put("/:id", validateRequest(validateMovieSchema), updateMovie);
+router.put("/:id", validateRequest(updateMovieSchema), updateMovie);
 
 router.delete("/:id", deleteMovie);
 

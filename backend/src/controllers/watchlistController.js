@@ -36,8 +36,9 @@ export const addToWatchlist = async(req, res) => {
 
 
 //for get user's watchlist
-export const getWatchlist = async(req, res) => {
-  const watchlist = await WatchList.find({userId: req.user._id}).populate("movieId", "title director releaseYear genre posterUrl");
+export const getWatchlistByUserId = async(req, res) => {
+  const {id} = req.params;
+  const watchlist = await WatchList.find({userId: id}).populate("movieId", "title director releaseYear genre posterUrl");
 
   res.status(200).json({status: "success", watchlist});
 
@@ -68,6 +69,7 @@ export const updateWatchlistItem = async(req, res) => {
 
   return res.status(200).json({status: "success", watchListItem});
 }
+
 
 //FOR REMOVE MOVIE FROM WATCHLLIST
 export const removeFromWatchlist = async (req, res) => {

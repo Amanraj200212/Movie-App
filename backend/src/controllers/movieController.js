@@ -31,11 +31,13 @@ export const getMovies = async (req, res) => {
 //for getting movie by their id
 export const getMovieById = async (req, res) => {
   try {
+    const {id} = req.params;
+
     if (!isValidId(req.params.id)) {
       return res.status(400).json({ message: "Invalid movie ID" });
     }
 
-    const movie = await Movie.findById(req.params.id);
+    const movie = await Movie.findById(id);
 
     if (!movie) {
       return res.status(404).json({ message: "Movie not found" });
@@ -50,11 +52,12 @@ export const getMovieById = async (req, res) => {
 // Update movie details
 export const updateMovie = async (req, res) => {
   try {
-    if (!isValidId(req.params.id)) {
+    const {id} = req.params;
+    if (!isValidId(id)) {
       return res.status(400).json({ message: "Invalid movie ID" });
     }
 
-    const movie = await Movie.findByIdAndUpdate(req.params.id, req.body, {
+    const movie = await Movie.findByIdAndUpdate(id, req.body, {
       new: true,
       runValidators: true,
     });
@@ -63,7 +66,13 @@ export const updateMovie = async (req, res) => {
       return res.status(404).json({ message: "Movie not found" });
     }
 
-    res.json(movie);
+    const updatedFields = Object.keys(req.body);
+    const formattedFields = updatedFields.map((field) => field).join(", ");
+
+    res.status(200).json({
+      message: `${formattedFields} updated successfully`,
+      movie,
+    });
   } catch (error) {
     res.status(400).json({ message: error.message });
   }

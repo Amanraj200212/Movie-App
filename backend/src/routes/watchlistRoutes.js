@@ -1,7 +1,7 @@
 import express from 'express';
 import { 
   addToWatchlist,
-  getWatchlist,
+  getWatchlistByUserId,
   updateWatchlistItem,
   removeFromWatchlist,
 } from '../controllers/watchlistController.js';
@@ -16,7 +16,7 @@ router.use(authMiddleware);
 
 router.post("/",validateRequest(validateWatchlistSchema) , addToWatchlist);
 
-router.get("/", getWatchlist);
+router.get("/:id", getWatchlistByUserId);
 
 router.put("/:id",validateRequest(validateWatchlistSchema) , updateWatchlistItem);
 

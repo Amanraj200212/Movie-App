@@ -14,6 +14,7 @@ const startServer = async () => {
       console.log(`Server is running on port ${env.port}`);
     });
 
+    //graceFul shutdown
     const gracefulShutdown = async () => {
       console.log("Shutting down server gracefully");
       await mongoose.connection.close();

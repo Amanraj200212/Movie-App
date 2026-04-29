@@ -82,3 +82,13 @@ export const logout = (req, res) => {
   })
 }
 
+
+//permanently delete user and thier wishlist by thier userId
+export const deleteUserData = async(req, res) => {
+  const {id} = req.params;
+  const getuser = await User.findByIdAndDelete(id)
+  const getUserwatchlist = await WatchList.findOne({userId: id}).deleteMany();
+
+  
+  res.status(200).json({message: `user named "${getuser.name}" and their watchlists delete successfully`})
+}

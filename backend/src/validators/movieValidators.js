@@ -26,7 +26,11 @@ export const validateMovieSchema = z.object({
     .optional(),
   runtime: z.coerce
     .number()
-    .min(1, "Runtime must be at least 1 minute"),
-  posterUrl: z.string()
+    .min(1, "Runtime must be at least 1 minute")
     .optional(),
-})
+  posterUrl: z.string()
+    .url("Poster URL must be a valid URL")
+    .optional(),
+});
+
+export const updateMovieSchema = validateMovieSchema.partial();

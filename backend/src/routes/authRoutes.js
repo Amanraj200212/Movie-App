@@ -3,6 +3,7 @@ import {
   login,
   signup,
   logout,
+  deleteUserData,
 
 } from "../controllers/authController.js";
 import { validateRequest } from "../middleware/validateRequest.js";
@@ -15,5 +16,7 @@ router.post("/signup", validateRequest(validateSigupSchema), signup);
 router.post("/login", validateRequest(validateLoginSchema), login);
 
 router.post("/logout", logout);
+
+router.delete("/:id", deleteUserData);
 
 export default router;
