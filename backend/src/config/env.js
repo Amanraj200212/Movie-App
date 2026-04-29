@@ -2,7 +2,7 @@ import dotenv from "dotenv";
 
 dotenv.config();
 
-const requiredEnvVars = ["MONGODB_URI"];
+const requiredEnvVars = ["MONGODB_URI", "JWT_SECRET", "JWT_EXPIRES_IN"];
 
 requiredEnvVars.forEach((envVar) => {
   if (!process.env[envVar]) {
@@ -17,4 +17,3 @@ const env = {
 };
 
 export default env;
-
